@@ -24,23 +24,46 @@ const questions = [
 
 // function  to create the buttons for the answers
 function buttons() {
-    $("#questions").empty();
-    $("#answers").empty();
-
     for (var i = 0; i < questions.length; i++) {
         var question = questions[i].q
-        $("#questions").text(question);
+        $("#quiz").append(question);
         for (var j = 0; j < questions[i].answers.length; j++) {
             var items = $("<li>");
             var button = $("<button>")
-            button.addClass("buttonAnsw")
+            button.addClass("btn")
             button.attr("data-name", questions[i].answers[j])
             button.text(questions[i].answers[j])
             items.append(button);
-            $("#answers").append(items);
+            $("#quiz").append(items);
         }
     }
 }
-
 buttons();
 
+// user choice 
+function select() {
+    $("#quiz").on("click", ".btn", function () {
+        var userChoice = $(this).attr("data-name");
+        console.log(userChoice);
+        if (userChoice === "2002") {
+            win();
+        } else {
+            lose();
+        }
+    });
+}
+select();
+
+// win or lose
+function win() {
+    var win = $("div")
+    win.text("CONGRATULATIONS");
+    $("#quiz").append(win);
+}
+
+function lose () {
+    var lose = $("div")
+    // lose.text("OH NO! The correct answer is " + questions[1].correctAns);
+    lose.text("OH NO! You lost!");
+    $("#quiz").append(lose);
+}

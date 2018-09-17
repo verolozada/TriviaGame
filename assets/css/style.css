@@ -3,4 +3,17 @@ h1 {
     text-align: center;
 }
 
+li {
+    list-style: none;
+}
+
+#quiz{
+    margin: 0 auto ;
+    padding: 10px;
+    text-align: center;
+}
+
+#answers {
+    margin-bottom: 10px;
+}
     
