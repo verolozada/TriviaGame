@@ -44,24 +44,27 @@ buttons();
 function select() {
     $("#quiz").on("click", ".btn", function () {
         var userChoice = $(this).attr("data-name");
-        console.log(userChoice);
-        if (userChoice === "2002") {
-            win();
-        } else {
-            lose();
-        }
+        // for (var i = 0; i < questions.length; i++) {
+            if ((userChoice === questions[0].correctAns)|| (userChoice === questions[1].correctAns) || (userChoice === questions[2].correctAns)){
+                win();
+            } else {
+                lose();
+            }
+        // }
     });
 }
 select();
 
-// win or lose
+// 
+// win function
 function win() {
     var win = $("div")
     win.text("CONGRATULATIONS");
     $("#quiz").append(win);
 }
 
-function lose () {
+// lose function
+function lose() {
     var lose = $("div")
     // lose.text("OH NO! The correct answer is " + questions[1].correctAns);
     lose.text("OH NO! You lost!");
