@@ -1,6 +1,8 @@
 //NOTE: cons cannot be reassigned., Let can be. 
 
-//create questions for the quiz with the respectives answers. 
+let wins = 0;
+let losses= 0;
+//create questions for the quiz with the respectives answers.
 const questions = [
     {
         q: "What's the name of Hank Pym's daughter in Ant-Man? ",
@@ -20,14 +22,17 @@ const questions = [
 ];
 
 let count = 0;
+let seconds;
+let time;
 
 // function  to create the buttons for the answers
-function buttons() {
-    var question = questions[count].q
+function question() {
+    $("#quiz").empty();
+    let question = questions[count].q
     $("#quiz").append(question);
-    for (var j = 0; j < questions[count].answers.length; j++) {
-        var items = $("<li>");
-        var button = $("<button>")
+    for (let j = 0; j < questions[count].answers.length; j++) {
+        let items = $("<li>");
+        let button = $("<button>")
         button.addClass("btn")
         button.attr("data-name", questions[count].answers[j])
         button.text(questions[count].answers[j])
@@ -39,38 +44,42 @@ function buttons() {
 // compare user choice with the correct answer
 function select() {
     $("#quiz").on("click", ".btn", function () {
-        var userChoice = $(this).attr("data-name");
-        if ((userChoice === questions[0].correctAns) || (userChoice === questions[1].correctAns) || (userChoice === questions[2].correctAns)) {
-            win();
+        let userChoice = $(this).attr("data-name");
+        if ((userChoice === questions[count].correctAns) ) {
+            alert("You win");
+            count++;
+            question();
         } else {
-            lose();
+            alert("You lost")
+            count++;
+            question();
+        }
+        if (count === questions.length) {
+            count= 0;
+            alert("Game Over");
         }
     });
 }
 
-// next question 
-function next() {
-    count++;
-    setTimeout(buttons, 10000);
-    if (count === questions.length){
-        alert("Game Over");
+
+function timer() {
+seconds = 12;
+$("#time").text(seconds);
+time = setInterval(decrement, 1000);
+}
+
+function decrement() {
+    seconds--;
+    $("#time").text(seconds);
+    if (seconds < 1) {
+        clearInterval(time)
     }
 }
 
-var showQuestion;
 
-// win function
-function win() {
-    var win = $("div")
-    win.text("CONGRATULATIONS");
-    $("#quiz").append(win);
-}
+question();
+select();
+timer();
 
-// lose function
-function lose() {
-    var lose = $("div")
-    // lose.text("OH NO! The correct answer is " + questions[1].correctAns);
-    lose.text("OH NO! You lost!");
-    $("#quiz").append(lose);
-}
+
 
