@@ -1,8 +1,5 @@
 //NOTE: cons cannot be reassigned., Let can be. 
 
-
-
-
 //create questions for the quiz with the respectives answers. 
 const questions = [
     {
@@ -22,40 +19,46 @@ const questions = [
     }
 ];
 
+let count = 0;
+
 // function  to create the buttons for the answers
 function buttons() {
-    for (var i = 0; i < questions.length; i++) {
-        var question = questions[i].q
-        $("#quiz").append(question);
-        for (var j = 0; j < questions[i].answers.length; j++) {
-            var items = $("<li>");
-            var button = $("<button>")
-            button.addClass("btn")
-            button.attr("data-name", questions[i].answers[j])
-            button.text(questions[i].answers[j])
-            items.append(button);
-            $("#quiz").append(items);
-        }
+    var question = questions[count].q
+    $("#quiz").append(question);
+    for (var j = 0; j < questions[count].answers.length; j++) {
+        var items = $("<li>");
+        var button = $("<button>")
+        button.addClass("btn")
+        button.attr("data-name", questions[count].answers[j])
+        button.text(questions[count].answers[j])
+        items.append(button);
+        $("#quiz").append(items);
     }
 }
-buttons();
 
-// user choice 
+// compare user choice with the correct answer
 function select() {
     $("#quiz").on("click", ".btn", function () {
         var userChoice = $(this).attr("data-name");
-        // for (var i = 0; i < questions.length; i++) {
-            if ((userChoice === questions[0].correctAns)|| (userChoice === questions[1].correctAns) || (userChoice === questions[2].correctAns)){
-                win();
-            } else {
-                lose();
-            }
-        // }
+        if ((userChoice === questions[0].correctAns) || (userChoice === questions[1].correctAns) || (userChoice === questions[2].correctAns)) {
+            win();
+        } else {
+            lose();
+        }
     });
 }
-select();
 
-// 
+// next question 
+function next() {
+    count++;
+    setTimeout(buttons, 10000);
+    if (count === questions.length){
+        alert("Game Over");
+    }
+}
+
+var showQuestion;
+
 // win function
 function win() {
     var win = $("div")
@@ -70,3 +73,4 @@ function lose() {
     lose.text("OH NO! You lost!");
     $("#quiz").append(lose);
 }
+
