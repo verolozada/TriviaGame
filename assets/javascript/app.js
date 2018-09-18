@@ -1,7 +1,7 @@
 //NOTE: cons cannot be reassigned., Let can be. 
 
 let wins = 0;
-let losses= 0;
+let losses = 0;
 //create questions for the quiz with the respectives answers.
 const questions = [
     {
@@ -46,25 +46,25 @@ function question() {
 function select() {
     $("#quiz").on("click", ".btn", function () {
         let userChoice = $(this).attr("data-name");
-        if ((userChoice === questions[count].correctAns) ) {
+        if ((userChoice === questions[count].correctAns)) {
             win();
-            // question();
+            setTimeout(question, 5000);
         } else {
             lost();
-            // question();
+            setTimeout(question,5000);
         }
         if (count === questions.length) {
-            count= 0;
-            alert("Game Over");
-            // show a resume of the game (wins and losses)
+            count = 0;
+            // alert("Game Over");
+            resume();
         }
     });
 }
 
 function timer() {
-seconds = 12;
-$("#time").text(seconds);
-time = setInterval(decrement, 1000);
+    seconds = 12;
+    $("#time").text(seconds);
+    time = setInterval(decrement, 1000);
 }
 
 function decrement() {
