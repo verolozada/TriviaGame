@@ -67,8 +67,8 @@ function question() {
     $("#time").empty();
     seconds = 12;
     time = setInterval(decrement, 1000);
-    let question = questions[count].q
-    $("#quiz").append(question);
+    let quest = questions[count].q
+    $("#quiz").append(quest);
     for (let j = 0; j < questions[count].answers.length; j++) {
         let items = $("<li>");
         let button = $("<button>")
