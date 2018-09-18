@@ -162,7 +162,6 @@ function showImage() {
     image.attr("src", questions[count].img)
     image.addClass("pics")
     $("#quiz").append(image);
- 
 }
 
 function decrement1 () {
@@ -173,6 +172,7 @@ function decrement1 () {
 function myFunction() {
     location.reload();
 }
+
 question();
 select();
 timer();
