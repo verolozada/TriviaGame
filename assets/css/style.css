@@ -1,13 +1,15 @@
 
 header {
     overflow: auto;
+    text-align: center;
 }
 
 h1 {
-    font-size:40px;
+    font-size:55px;
     color: rgb(126, 28, 28);
     margin-left: 15px;
     text-align: center;
+    font-family: "Bangers";
 }
 
 li {    
@@ -18,16 +20,15 @@ li {
     margin: 0 auto;
     padding: 10px;
     text-align: center;    
-    width: 50%;
+    width: 45%;
     line-height: 32px;
+    background: black;
+    opacity: 0.9;
+    border-radius: 25px;
+    border: 3px solid rgb(129, 49, 49);
+    color: white;
 }
 
-#header {
-    width: 300px;
-    height: auto;
-    float: left;
-    margin: 0;
-}
 html {
 background: url('http://www.wallpapersshock.com/uploads/large/comics-deadpool/marvel-comics-deadpool-yellow-background.jpg') no-repeat center center fixed; 
 -webkit-background-size: cover;
@@ -36,3 +37,31 @@ background: url('http://www.wallpapersshock.com/uploads/large/comics-deadpool/ma
 background-size: cover;
 }
 
+.btn {
+    background: rgb(170, 93, 93);
+    width: 250px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    color: black;
+    font-size: 16px;
+    border: 1px solid black;
+    font-family: "Coda";
+}
+
+#quiz, #correct, #incorrect{
+    font-size: 20px;
+    font-family: "Coda";
+}
+
+#time {
+    font-size: 25px;
+    font-family: "Audiowide";
+    margin-bottom: 5px;
+}
+
+.btn :hover {
+    background: white;
+    color: red;
+}

@@ -18,6 +18,16 @@ const questions = [
         q: "How many Infity Gems does Thanos Have?",
         answers: ["8", "6", "5", "10"],
         correctAns: "6"
+    }, 
+    {
+        q: "What is the last activation word used by Helmut Zemo to activate the Winter Soldier in Captain America: Civil War?",
+        answers: ["Devyat(Nine)", "Gruzovoy Vagon (Freight Car)", "Zhelaniye (Longing)", "Rassvet (Daybreak)"],
+        correctAns: "Gruzovoy Vagon (Freight Car)"
+    }, 
+    {
+        q: "What are the 'real' names of Quicksilver & Scarlet Witch ?",
+        answers: ["Sergei & Natasha", "Vasily & Lynda", "Pietro & Wanda", "Anatoly & Wanda"],
+        correctAns: "Pietro & Wanda"
     }
 ];
 
@@ -29,6 +39,8 @@ let time;
 function question() {
     $("#quiz").empty();
     $("#time").empty();
+    seconds = 12;
+    time = setInterval(decrement, 1000);
     let question = questions[count].q
     $("#quiz").append(question);
     for (let j = 0; j < questions[count].answers.length; j++) {
@@ -48,55 +60,63 @@ function select() {
         let userChoice = $(this).attr("data-name");
         if ((userChoice === questions[count].correctAns)) {
             win();
-            setTimeout(question, 5000);
         } else {
-            lost();
-            setTimeout(question,5000);
-        }
-        if (count === questions.length) {
-            count = 0;
-            // alert("Game Over");
-            resume();
+            lose();
         }
     });
 }
 
 function timer() {
-    seconds = 12;
-    $("#time").text(seconds);
-    time = setInterval(decrement, 1000);
+    $("#time").text("Time Left: " + seconds);
 }
 
 function decrement() {
     seconds--;
-    $("#time").text(seconds);
-    if (seconds < 1) {
-        clearInterval(time)
-        $("#quiz").text("Time's Up!");
-        resume();
+    $("#time").text("Time Left: " + seconds);
+    if (seconds === 0) {
+        unanwsered();
     }
 }
 
+// select the correct answer
 function win() {
-    count++;
+    clearInterval(time);
     wins++;
-    console.log(wins)
     $("#quiz").text("CONGRATS");
-    //go to the next question after 3 seconds
+    count++;
+    if (count < questions.length) {
+        setTimeout(question, 3000);
+    } else {
+        resume();
+    }
+
 }
 
-function lost() {
-    $("#quiz").text("Oh No! The correct answer was: " + questions[count].correctAns);
+// select the wrong answer
+function lose() {
+    clearInterval(time);
+    $("#quiz").text("Oh No! The correct answer is: " + questions[count].correctAns);
     count++;
     losses++;
-    //go to the next question after 3 seconds
+    if (count < questions.length) {
+        setTimeout(question, 3000);
+    } else {
+        setTimeout(resume,3000);
+    }
 }
 
-// Time's up or questions ended show resume page
-
-question();
-select();
-timer();
+// when you run out of time
+function unanwsered() {
+    clearInterval(time);
+    $("#quiz").text("Time's Up! " + "The correct answer is: " + questions[count].correctAns);
+    count++;
+    if (count < questions.length) {
+        setTimeout(question, 3000);
+    }
+    else {
+        resume();
+    }
+}
 
 function resume() {
     $("#time").empty();
@@ -104,6 +124,10 @@ function resume() {
     $("#correct").text("Correct Answers: " + wins);
     $("#incorrect").text("Wrong Answers: " + losses);
 }
+
+question();
+select();
+timer();
 
 
 
