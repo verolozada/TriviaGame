@@ -7,33 +7,57 @@ const questions = [
     {
         q: "What's the name of Hank Pym's daughter in Ant-Man? ",
         answers: ["Hope Thomson", "Hope Van Pym", "Hope Van Dyne", "Hope Smith"],
-        correctAns: "Hope Van Dyne"
+        correctAns: "Hope Van Dyne",
+        img: "assets/images/Hope.jpg"
     },
     {
         q: "When was the first Spiderman Movie released?",
         answers: ["2002", "2005", "2000", "2003"],
-        correctAns: "2002"
+        correctAns: "2002",
+        img: "assets/images/spiderman.jpg"
     },
     {
         q: "How many Infity Gems does Thanos Have?",
         answers: ["8", "6", "5", "10"],
-        correctAns: "6"
-    }, 
+        correctAns: "6",
+        img: "assets/images/infinity.jpg"
+    },
     {
         q: "What is the last activation word used by Helmut Zemo to activate the Winter Soldier in Captain America: Civil War?",
         answers: ["Devyat(Nine)", "Gruzovoy Vagon (Freight Car)", "Zhelaniye (Longing)", "Rassvet (Daybreak)"],
-        correctAns: "Gruzovoy Vagon (Freight Car)"
-    }, 
+        correctAns: "Gruzovoy Vagon (Freight Car)",
+        img: "assets/images/wintersoldier.jpg"
+    },
     {
         q: "What are the 'real' names of Quicksilver & Scarlet Witch ?",
         answers: ["Sergei & Natasha", "Vasily & Lynda", "Pietro & Wanda", "Anatoly & Wanda"],
-        correctAns: "Pietro & Wanda"
+        correctAns: "Pietro & Wanda",
+        img: "assets/images/wandaAndpietro.jpg"
+    },
+    {
+        q: "Which Infinity Stone does Vision has embedded into his forehead?",
+        answers: ["The Space Stone", "The Soul Stone", "The Time Stone", "The Mind Stone"],
+        correctAns: "The Mind Stone",
+        img: "assets/images/vision.jpg"
+    },
+    {
+        q: "What is Peter Quill a.k.a Star Lord’s ship called in Guardians of the Galaxy?",
+        answers: ["The Milano", "The Nova", "The Knowhere", "The Klyn"],
+        correctAns: "The Milano",
+        img: "assets/images/milano.jpg"
+    },
+    {
+        q: "What is Tony Stark’s mother called??",
+        answers: ["Martha Stark", "Peggy Stark", "Ashely Stark", "Maria Stark"],
+        correctAns: "Maria Stark",
+        img: "assets/images/mariaStark.png"
     }
 ];
 
 let count = 0;
 let seconds;
 let time;
+let pic;
 
 // function  to create the buttons for the answers
 function question() {
@@ -82,12 +106,13 @@ function decrement() {
 function win() {
     clearInterval(time);
     wins++;
-    $("#quiz").text("CONGRATS");
+    $("#quiz").text("CONGRATS! That's the correct answer");
+    showImage();
     count++;
     if (count < questions.length) {
         setTimeout(question, 3000);
     } else {
-        resume();
+        setTimeout(resume, 3000);
     }
 
 }
@@ -96,12 +121,13 @@ function win() {
 function lose() {
     clearInterval(time);
     $("#quiz").text("Oh No! The correct answer is: " + questions[count].correctAns);
+    showImage();
     count++;
     losses++;
     if (count < questions.length) {
         setTimeout(question, 3000);
     } else {
-        setTimeout(resume,3000);
+        setTimeout(resume, 3000);
     }
 }
 
@@ -109,12 +135,13 @@ function lose() {
 function unanwsered() {
     clearInterval(time);
     $("#quiz").text("Time's Up! " + "The correct answer is: " + questions[count].correctAns);
+    showImage();
     count++;
     if (count < questions.length) {
         setTimeout(question, 3000);
     }
     else {
-        resume();
+        setTimeout(resume, 3000);
     }
 }
 
@@ -125,9 +152,15 @@ function resume() {
     $("#incorrect").text("Wrong Answers: " + losses);
 }
 
+function showImage() {
+    let image = $("<img>")
+    image.attr("src", questions[count].img)
+    image.addClass("pics")
+    $("#quiz").append(image);
+}
+
 question();
 select();
 timer();
-
 
 
