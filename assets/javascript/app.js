@@ -57,7 +57,6 @@ const questions = [
 let count = 0;
 let seconds;
 let time;
-let pic;
 let sec;
 let time1;
 
@@ -70,8 +69,8 @@ function question() {
     let quest = questions[count].q
     $("#quiz").append(quest);
     for (let j = 0; j < questions[count].answers.length; j++) {
-        let items = $("<li>");
-        let button = $("<button>")
+        const items = $("<li>");
+        const button = $("<button>")
         button.addClass("btn")
         button.attr("data-name", questions[count].answers[j])
         button.text(questions[count].answers[j])
@@ -158,7 +157,7 @@ function resume() {
 }
 
 function showImage() {
-    let image = $("<img>")
+    const image = $("<img>")
     image.attr("src", questions[count].img)
     image.addClass("pics")
     $("#quiz").append(image);
