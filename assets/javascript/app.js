@@ -72,25 +72,38 @@ function decrement() {
     $("#time").text(seconds);
     if (seconds < 1) {
         clearInterval(time)
-        $("#container").text("Time's Up!");
+        $("#quiz").text("Time's Up!");
+        resume();
     }
 }
 
 function win() {
     count++;
-    $("#container").text("CONGRATS");
+    wins++;
+    console.log(wins)
+    $("#quiz").text("CONGRATS");
     //go to the next question after 3 seconds
 }
 
 function lost() {
-    $("#container").text("Oh No! The correct answer was: " + questions[count].correctAns);
+    $("#quiz").text("Oh No! The correct answer was: " + questions[count].correctAns);
     count++;
+    losses++;
     //go to the next question after 3 seconds
 }
+
+// Time's up or questions ended show resume page
 
 question();
 select();
 timer();
+
+function resume() {
+    $("#time").empty();
+    $("#quiz").empty();
+    $("#correct").text("Correct Answers: " + wins);
+    $("#incorrect").text("Wrong Answers: " + losses);
+}
 
 
 
