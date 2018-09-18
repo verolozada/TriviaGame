@@ -54,7 +54,7 @@ background-size: cover;
     font-family: "Coda";
 }
 
-#quiz, #correct, #incorrect{
+#quiz, #correct, #incorrect, #startover{
     font-size: 20px;
     font-family: "Coda";
 }
@@ -74,3 +74,4 @@ background-size: cover;
     width: 400px;
     height: auto;
 }
+

@@ -58,6 +58,8 @@ let count = 0;
 let seconds;
 let time;
 let pic;
+let sec;
+let time1;
 
 // function  to create the buttons for the answers
 function question() {
@@ -150,6 +152,9 @@ function resume() {
     $("#quiz").empty();
     $("#correct").text("Correct Answers: " + wins);
     $("#incorrect").text("Wrong Answers: " + losses);
+    sec = 5;
+    time1 = setInterval(decrement1,1000);
+    setTimeout(myFunction, 5000);
 }
 
 function showImage() {
@@ -157,8 +162,17 @@ function showImage() {
     image.attr("src", questions[count].img)
     image.addClass("pics")
     $("#quiz").append(image);
+ 
 }
 
+function decrement1 () {
+    sec--;
+    $("#startover").text("Game will start over in:  " + sec + " seconds");
+}
+
+function myFunction() {
+    location.reload();
+}
 question();
 select();
 timer();
