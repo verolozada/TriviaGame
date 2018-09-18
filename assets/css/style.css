@@ -1,15 +1,38 @@
+
+header {
+    overflow: auto;
+}
+
 h1 {
     font-size:40px;
+    color: rgb(126, 28, 28);
+    margin-left: 15px;
     text-align: center;
 }
 
-li {
+li {    
     list-style: none;
 }
 
 #container{
     margin: 0 auto;
     padding: 10px;
-    text-align: center;
+    text-align: center;    
+    width: 50%;
+    line-height: 32px;
+}
+
+#header {
+    width: 300px;
+    height: auto;
+    float: left;
+    margin: 0;
+}
+html {
+background: url('http://www.wallpapersshock.com/uploads/large/comics-deadpool/marvel-comics-deadpool-yellow-background.jpg') no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
 }
 

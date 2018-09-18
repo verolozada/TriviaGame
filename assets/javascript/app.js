@@ -28,6 +28,7 @@ let time;
 // function  to create the buttons for the answers
 function question() {
     $("#quiz").empty();
+    $("#time").empty();
     let question = questions[count].q
     $("#quiz").append(question);
     for (let j = 0; j < questions[count].answers.length; j++) {
@@ -46,21 +47,19 @@ function select() {
     $("#quiz").on("click", ".btn", function () {
         let userChoice = $(this).attr("data-name");
         if ((userChoice === questions[count].correctAns) ) {
-            alert("You win");
-            count++;
-            question();
+            win();
+            // question();
         } else {
-            alert("You lost")
-            count++;
-            question();
+            lost();
+            // question();
         }
         if (count === questions.length) {
             count= 0;
             alert("Game Over");
+            // show a resume of the game (wins and losses)
         }
     });
 }
-
 
 function timer() {
 seconds = 12;
@@ -73,9 +72,21 @@ function decrement() {
     $("#time").text(seconds);
     if (seconds < 1) {
         clearInterval(time)
+        $("#container").text("Time's Up!");
     }
 }
 
+function win() {
+    count++;
+    $("#container").text("CONGRATS");
+    //go to the next question after 3 seconds
+}
+
+function lost() {
+    $("#container").text("Oh No! The correct answer was: " + questions[count].correctAns);
+    count++;
+    //go to the next question after 3 seconds
+}
 
 question();
 select();
