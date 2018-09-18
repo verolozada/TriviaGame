@@ -55,10 +55,9 @@ const questions = [
 ];
 
 let count = 0;
-let seconds;
+let seconds; //const?
 let time;
-let sec;
-let time1;
+let sec; //const?
 
 // function  to create the buttons for the answers
 function question() {
@@ -66,7 +65,7 @@ function question() {
     $("#time").empty();
     seconds = 12;
     time = setInterval(decrement, 1000);
-    let quest = questions[count].q
+    const quest = questions[count].q
     $("#quiz").append(quest);
     for (let j = 0; j < questions[count].answers.length; j++) {
         const items = $("<li>");
@@ -82,7 +81,7 @@ function question() {
 // compare user choice with the correct answer
 function select() {
     $("#quiz").on("click", ".btn", function () {
-        let userChoice = $(this).attr("data-name");
+        const userChoice = $(this).attr("data-name");
         if ((userChoice === questions[count].correctAns)) {
             win();
         } else {
