@@ -55,9 +55,10 @@ const questions = [
 ];
 
 let count = 0;
-let seconds; //const?
-let time;
-let sec; //const?
+let seconds;
+let time; 
+let sec;
+let time1; 
 
 // function  to create the buttons for the answers
 function question() {
