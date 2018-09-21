@@ -2,6 +2,7 @@
 
 let wins = 0;
 let losses = 0;
+
 //create questions for the quiz with the respectives answers.
 const questions = [
     {
